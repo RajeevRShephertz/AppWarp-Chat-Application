@@ -15,7 +15,7 @@
 
 @protocol ZoneRequestListener <NSObject>
 
-@required
+@optional
 /**
  * Invoked in response to a createRoom request.
  * @param event
@@ -52,5 +52,23 @@
  * @param event
  */
 -(void)onGetMatchedRoomsDone:(MatchedRoomsEvent*)event;
+
+/**
+ * Invoked in response to a getAllRoomsCount request.
+ * @param event
+ */
+-(void)onGetAllRoomsCountDone:(AllRoomsEvent*)roomEvent;
+
+/**
+ * Invoked in response to a getAllUsersCount request.
+ * @param event
+ */
+-(void)onGetOnlineUsersCountDone:(AllUsersEvent*)event;
+
+/**
+ * Invoked in response to a getUserStatus request.
+ * @param event
+ */
+-(void)onGetUserStatusDone:(LiveUserInfoEvent*)event;
 
 @end

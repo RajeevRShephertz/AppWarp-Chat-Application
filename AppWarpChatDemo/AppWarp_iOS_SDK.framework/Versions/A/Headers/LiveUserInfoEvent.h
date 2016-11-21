@@ -27,13 +27,17 @@
  * Gives the custom data associated with the user
  */
 @property (nonatomic,retain) NSString *customData;
+
+/**
+ * Gives the custom data associated with the user
+ */
+@property (nonatomic) BOOL isOnilne;
 /**
  * true if the user is in a lobby
  */
 @property bool isLocationLobby;
 
-
 +(LiveUserInfoEvent*)buildLiveUserInfoEvent:(WarpResponse*)response;
-
++(LiveUserInfoEvent*)buildUserStatusEvent:(WarpResponse*)response;
 
 @end

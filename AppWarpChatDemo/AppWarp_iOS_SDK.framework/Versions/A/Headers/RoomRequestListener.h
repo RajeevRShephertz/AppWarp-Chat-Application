@@ -12,7 +12,7 @@
 
 @protocol RoomRequestListener <NSObject>
 
-@required
+@optional
 /**
  * Invoked in response to a subscribeRoom request.
  * @param event
@@ -28,6 +28,18 @@
  * @param event
  */
 -(void)onJoinRoomDone:(RoomEvent*)roomEvent;
+
+/**
+ * Invoked in response to a joinAndSubscribeRoom request.
+ * @param event
+ */
+-(void)onJoinAndSubscribeRoomDone:(RoomEvent*)roomEvent;
+
+/**
+ * Invoked in response to a leaveAndUnsubscribe request.
+ * @param event
+ */
+-(void)onLeaveAndUnsubscribeRoomDone:(RoomEvent*)roomEvent;
 /**
  * Invoked in response to a leaveRoom request.
  * @param event

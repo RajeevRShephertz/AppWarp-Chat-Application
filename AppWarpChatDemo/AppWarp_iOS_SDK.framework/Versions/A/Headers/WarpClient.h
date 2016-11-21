@@ -19,7 +19,6 @@
 @property(nonatomic,retain)NSString *apiKey;
 @property(nonatomic,retain)NSString *secretKey;
 @property(nonatomic,retain)NSString *userName;
-//@property(nonatomic,retain)NSString *warpServerHost;
 
 
 /**
@@ -56,6 +55,7 @@
  *In case of lack of connectivity, the server will fall back to sending updates over TCP for the client. 
  *Sending can continue over UDP irrespective.
  **/
+
 -(void)initUDP;
 
 /**
@@ -78,6 +78,9 @@
  * @return
  */
 -(int)getConnectionState;
+
+-(int)getSessionID;
+
 -(void)onResponse:(WarpResponse*)response;
 -(void)onNotify:(WarpNotifyMessage*)notify;
 -(void)onConnect:(BOOL)value;
@@ -147,9 +150,20 @@
  * Retrieves information of the room that contain specific
  * properties from the server. Result is
  * provided in the onGetMatchedRoomsDone callback of the ZoneListener.
- * @param roomid
+ * @param properties
  */
 -(void)getRoomWithProperties:(NSDictionary*) properties;
+
+/**
+ * Retrieves information of the room that contain specific
+ * properties from the server. Result is
+ * provided in the onGetMatchedRoomsDone callback of the ZoneListener.
+ * @param properties : Search properties
+ * @param minUser : minimum user in a room you are searching for
+ * @param maxUser : maximum user in a room you are searching for
+ * @param maxPrefered : Rooms with max user is prefered if true
+ */
+-(void)getRoomInRangeWithProperties:(NSDictionary*)properties minUser:(int)minUser maxUser:(int)maxUser maxPrefered:(BOOL)maxPrefered;
 
 /**
  * Retrieves live information of the user from the server. Result is
@@ -194,6 +208,14 @@
  * @param roomId
  */
 -(void)joinRoom:(NSString*)roomId;
+
+/**
+ * sends a join and subscribe room request to the server. Result of the request is provided
+ * in the onJoinAndSubscribeRoomDone callback of the RoomListener.
+ * @param roomId
+ */
+-(void)joinAndSubscribeRoom:(NSString*)roomId;
+
 /**
  * Sends a join room request to the server with the condition that the room must have
  * a matching set of property value pairs associated with it. This is useful in match making.
@@ -207,6 +229,12 @@
  * @param roomId
  */
 -(void)leaveRoom:(NSString*)roomId;
+/**
+ * sends a leave and unsubscribe room request to the server. Result of the request is provided
+ * in the onLeaveAndUnsubscribeRoomDone callback of the RoomListener.
+ * @param roomId
+ */
+-(void)leaveAndUnsubscribeRoom:(NSString*)roomId;
 /**
  * sends a subscribe room request to the server. Result of the request is provided
  * in the onSubscribeRoomDone callback of the RoomListener.
@@ -245,6 +273,8 @@
 
 -(void)sendUpdatePeers:(NSData*)update;
 
+-(void)sendPrivateUpdate:(NSData*)update toUser:(NSString*)userName;
+
 /**
  * sends a custom update message to room in which the user is currently joined. The 
  * update is sent using UDP protocol and is unreliable.
@@ -252,7 +282,7 @@
  */
 
 -(void)sendUdpUpdatePeers:(NSData*)update;
-
+-(void)sendUDPPrivateUpdate:(NSData*)update toUser:(NSString*)userName;
 /**
  * add your listener object on which callbacks will be invoked when
  * a response from the server is received for connect, authenticate and
@@ -405,6 +435,12 @@
 -(void) sendMove:(NSString*) moveData;
 
 /*
+ * Sends a move and userName(whose turn is next) to the joined turn based room. Only allowed if its the sender's
+ * turn.
+ */
+-(void) sendMove:(NSString*) moveData nextTurn:(NSString*)nextTurn;
+
+/*
  * Sets the connection recovery time (seconds) allowed that will be negotiated
  * with the server. By default it is 0 so there is no connection recovery.
  */
@@ -416,17 +452,43 @@
  */
 -(void)recoverConnection;
 
+-(void)recoverConnectionWithSessionID:(int)_sessionID forUser:(NSString*)_userName;
 /*
  * Enable or Disable trace to system.out. Default is disabled.
  */
 -(void)enableTrace:(BOOL)isEnable;
 
 /**
- * sends a start game request to the server. Result of the request is
+ * Sends a start game request to the server. Result of the request is
  * provided in the onGameStarted callback of the TurnBasedRoomListener.
  *
  */
 -(void)startGame;
+
+/**
+ * Sends a start game request to the server with instruction that whether the default logic for turn assigment should be enabled or not. Result of the request is
+ * provided in the onGameStarted callback of the TurnBasedRoomListener.
+ * @params isDefaultLogic : set YES if you want default logic otherwise set NO
+ */
+-(void)startGame:(BOOL)isDefaultLogic;
+
+/**
+ * Sends a start game request to the server with instruction that whether the default logic for turn assigment should be enabled or not. Result of the request is
+ * provided in the onGameStarted callback of the TurnBasedRoomListener.
+ *
+ * @params: isDefaultLogic : set YES if you want default logic otherwise set NO
+ * @params: firstTurn : if isDefaultLogic is YES then this contains the userName whose turn is first, send empty string otherwise. 
+ *                      The default is the user who starts the game.
+ */
+-(void)startGame:(BOOL)isDefaultLogic firstTurn:(NSString*)firstTurn;
+
+/**
+ * Sends the user name whose turn is next to the server. Result of the request is
+ * provided in the onSetNextTurnDone callback of the TurnBasedRoomListener.
+ *
+ */
+
+-(void)setNextTurn:(NSString*)nextTurn;
 
 /**
  * sends a stop game request to the server. Result of the request is
@@ -440,5 +502,29 @@
  * provided in the onGetMoveHistoryDone callback of the TurnBasedRoomListener.
  */
 -(void)getMoveHistory;
+
+
+-(void)setGeo:(NSString*)_geo;
+-(void)setServer:(NSString*)server;
+
+/**
+ * Retrieves users count connected to the server. Result is
+ * provided in the getUsersCount callback of the ZoneListener.
+ */
+-(void)getOnlineUsersCount;
+
+/**
+ * Retrieves rooms count connected to the server. Result is
+ * provided in the getRoomsCount callback of the ZoneListener.
+ */
+-(void)getAllRoomsCount;
+
+/**
+ * Retrieves user status either online or not from the server. Result is
+ * provided in the onUserStatusDone callback of the ZoneListener.
+ *
+ * @param username
+ */
+-(void)getUserStatus:(NSString*)userName;
 
 @end

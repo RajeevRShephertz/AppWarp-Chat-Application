@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <AppWarp_iOS_SDK/AppWarp_iOS_SDK.h>
 
-static NSString *apiKey = @"1adc4a4cf9563445d1326da3485f74ec7e9286542f1f3c6b36691d100fb3c592";
-static NSString *secretKey =  @"f11b0f2a47a699c7e5c5677a4807c53dbb98a60a08ba9598b74adf64a3616557";
+static NSString *apiKey = @"070af3ade71164ea8a9bea39a6ff9921f020403cc41c70f194f099737f85069b";
+static NSString *secretKey =  @"e04bfbf8941dcbe6d4ba6c92d8bf34130e41befa3737d57a039eb40c180d261e";
 
 #define kFunctionLog     NSLog(@"%s",__FUNCTION__)
 

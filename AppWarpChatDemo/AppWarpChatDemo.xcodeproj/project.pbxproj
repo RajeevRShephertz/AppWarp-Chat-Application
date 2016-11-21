@@ -22,8 +22,8 @@
 		1CE02B0F18C5AF97009C0A5F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1CE02B0D18C5AF97009C0A5F /* InfoPlist.strings */; };
 		1CE02B1118C5AF97009C0A5F /* AppWarpChatDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE02B1018C5AF97009C0A5F /* AppWarpChatDemoTests.m */; };
 		1CFED43618C6FD7C003BD087 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFED43518C6FD7C003BD087 /* ChatViewController.m */; };
-		1CFED43718C728D8003BD087 /* AppWarp_iOS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CE02B1A18C5B5ED009C0A5F /* AppWarp_iOS_SDK.framework */; };
 		1CFED43B18C74C8C003BD087 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFED43A18C74C8C003BD087 /* Reachability.m */; };
+		5D18A4501DE2EA9E0015F8EA /* AppWarp_iOS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D18A44F1DE2EA9E0015F8EA /* AppWarp_iOS_SDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,12 +56,12 @@
 		1CE02B0C18C5AF97009C0A5F /* AppWarpChatDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AppWarpChatDemoTests-Info.plist"; sourceTree = "<group>"; };
 		1CE02B0E18C5AF97009C0A5F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1CE02B1018C5AF97009C0A5F /* AppWarpChatDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppWarpChatDemoTests.m; sourceTree = "<group>"; };
-		1CE02B1A18C5B5ED009C0A5F /* AppWarp_iOS_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppWarp_iOS_SDK.framework; sourceTree = "<group>"; };
 		1CE02B1C18C5C86F009C0A5F /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		1CFED43418C6FD7C003BD087 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
 		1CFED43518C6FD7C003BD087 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
 		1CFED43918C74C8C003BD087 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		1CFED43A18C74C8C003BD087 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		5D18A44F1DE2EA9E0015F8EA /* AppWarp_iOS_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppWarp_iOS_SDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,7 +72,7 @@
 				1CE02AE518C5AF97009C0A5F /* CoreGraphics.framework in Frameworks */,
 				1CE02AE718C5AF97009C0A5F /* UIKit.framework in Frameworks */,
 				1CE02AE318C5AF97009C0A5F /* Foundation.framework in Frameworks */,
-				1CFED43718C728D8003BD087 /* AppWarp_iOS_SDK.framework in Frameworks */,
+				5D18A4501DE2EA9E0015F8EA /* AppWarp_iOS_SDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,7 +111,7 @@
 		1CE02AE118C5AF97009C0A5F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1CE02B1A18C5B5ED009C0A5F /* AppWarp_iOS_SDK.framework */,
+				5D18A44F1DE2EA9E0015F8EA /* AppWarp_iOS_SDK.framework */,
 				1CE02AE218C5AF97009C0A5F /* Foundation.framework */,
 				1CE02AE418C5AF97009C0A5F /* CoreGraphics.framework */,
 				1CE02AE618C5AF97009C0A5F /* UIKit.framework */,
@@ -414,6 +414,7 @@
 					"$(inherited)",
 					/Users/siddharthachandurkar/Desktop/AppWarpChatDemo,
 					"/Users/siddharthachandurkar/Documents/AppWarp-Chat-Application/AppWarpChatDemo",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AppWarpChatDemo/AppWarpChatDemo-Prefix.pch";
@@ -436,6 +437,7 @@
 					"$(inherited)",
 					/Users/siddharthachandurkar/Desktop/AppWarpChatDemo,
 					"/Users/siddharthachandurkar/Documents/AppWarp-Chat-Application/AppWarpChatDemo",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AppWarpChatDemo/AppWarpChatDemo-Prefix.pch";

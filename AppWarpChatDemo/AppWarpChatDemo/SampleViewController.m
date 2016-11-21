@@ -184,7 +184,7 @@
 -(void)onConnectDone:(ConnectEvent*) event {
     kFunctionLog;
     NSLog(@"%d",event.result);
-    if (!event.result) {
+    if (event.result==SUCCESS) {
         [self stopIndicator];
         [self getAllRoomsInfo];
     } else {

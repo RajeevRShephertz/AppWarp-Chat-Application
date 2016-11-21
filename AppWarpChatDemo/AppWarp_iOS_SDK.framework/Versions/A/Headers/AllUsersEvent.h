@@ -20,6 +20,8 @@
  */
 @property (nonatomic, retain) NSMutableArray *userNames;
 
+@property (nonatomic) long onlineUsersCount;
+
 +(AllUsersEvent*)buildAllUsersEvent:(WarpResponse*)response;
 
 @end

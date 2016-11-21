@@ -20,6 +20,7 @@
  */
 
 @property (nonatomic, retain) NSMutableArray *roomIds;
+@property (nonatomic) long roomsCount;
 
 +(AllRoomsEvent*)buildAllRoomsEvent:(WarpResponse*)response;
 
